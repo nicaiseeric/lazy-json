@@ -6,7 +6,7 @@ object LazyJsonArrayReaderMain {
 
   def main(args: Array[String]) {
 
-    val filename = "/data/persons/large-jsonarray-data.json"
+    val filename = if(args.length > 0) args(0) else "/data/persons/large-jsonarray-data.json"
 
     val lazyJsonArrayReaderEngine = new LazyJsonArrayReaderEngine(filename)
 

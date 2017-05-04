@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>ca.aretex.labs</groupId>
     <artifactId>lazy-json</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.0-SNAPSHOT</version>
 
     <properties>
         <java.version>1.7</java.version>
@@ -35,7 +35,6 @@
 
     <build>
         <sourceDirectory>src/main/scala</sourceDirectory>
-        <finalName>${project.artifactId}-${project.version}-${scala.dep.version}</finalName>
 
         <plugins>
             <plugin>
@@ -92,6 +91,9 @@
                         </configuration>
                     </execution>
                 </executions>
+                <configuration>
+                    <finalName>${project.artifactId}-${project.version}-${scala.dep.version}-shaded</finalName>
+                </configuration>
             </plugin>
 
         </plugins>
