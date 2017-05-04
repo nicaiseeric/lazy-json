@@ -28,8 +28,13 @@ class LazyJsonArrayReaderEngine[T:ClassTag](resourceRelativeFilepath: String) {
 
       reader.beginArray()
 
-      // this tail-rec function build the stream using the same memory stack;
-      // this is efficient for memory consumption
+      /**
+       * this tail-rec function builds the stream of T's objects
+       * it reuses the same memory stack to reduce memory consumption
+       * @param hasNext indicates if an object can be parse from the JsonArray
+       * @param agg contains the actual stream of objects found
+       * @return
+       */
       def getPersons(hasNext: Boolean, agg: Stream[T]): Stream[T] ={
         if(!hasNext) agg
         else{
