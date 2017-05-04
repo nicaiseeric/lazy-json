@@ -11,19 +11,16 @@ import scala.reflect.ClassTag
 
 
 /**
- * This class read a large JsonArray in a lazy way using Scala Stream and tail-recursive functions.
- * This requires few memory
- * @param resourceRelativeFilepath the file is located in ${project.basedir}/src/main/resources
+ * This class read a large JsonArray of objects of generic class T in a lazy way
+ * using Scala Stream and tail-recursive functions. This requires few memory
  */
-class LazyJsonArrayReaderEngine[T:ClassTag](resourceRelativeFilepath: String) {
+class LazyJsonArrayReaderEngine[T:ClassTag]() {
 
-  val stream : InputStream = this.getClass.getResourceAsStream(resourceRelativeFilepath)
-
-  def readStream(): Stream[T] = {
+  def readStream(inputStream: InputStream): Stream[T] = {
     import Stream._
     
     try {
-      val reader: JsonReader = new JsonReader(new InputStreamReader(stream, "UTF-8"))
+      val reader: JsonReader = new JsonReader(new InputStreamReader(inputStream, "UTF-8"))
       val gson: Gson = new GsonBuilder().create()
 
       reader.beginArray()
