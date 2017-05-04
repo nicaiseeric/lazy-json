@@ -3,10 +3,10 @@ package ca.aretex.labs.data
 import java.io.{InputStream, InputStreamReader}
 import java.util.logging.{Level, Logger}
 
-import ca.aretex.labs.data.jsonmodel.Person
 import com.google.gson.stream.JsonReader
 import com.google.gson.{Gson, GsonBuilder}
 
+import scala.annotation.tailrec
 import scala.reflect.ClassTag
 
 
@@ -35,6 +35,7 @@ class LazyJsonArrayReaderEngine[T:ClassTag](resourceRelativeFilepath: String) {
        * @param agg contains the actual stream of objects found
        * @return
        */
+      @tailrec
       def getPersons(hasNext: Boolean, agg: Stream[T]): Stream[T] ={
         if(!hasNext) agg
         else{
