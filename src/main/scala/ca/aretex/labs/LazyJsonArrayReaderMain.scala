@@ -11,12 +11,12 @@ object LazyJsonArrayReaderMain {
 
     val inputStream = this.getClass.getResourceAsStream(resourceRelativeFilepath)
 
-    val lazyJsonArrayReaderEngine = new LazyJsonArrayReaderEngine[Person]()
+    val lazyJsonArrayReaderPersonEngine = new LazyJsonArrayReaderEngine[Person]()
 
     val ti = System.currentTimeMillis()
     println("Start reading in stream mode: " + ti)
 
-    val persons = lazyJsonArrayReaderEngine.readStream(inputStream)
+    val persons = lazyJsonArrayReaderPersonEngine.readStream(inputStream)
 
     val tf = System.currentTimeMillis()
     println("Finish. Total time: " + (tf - ti))

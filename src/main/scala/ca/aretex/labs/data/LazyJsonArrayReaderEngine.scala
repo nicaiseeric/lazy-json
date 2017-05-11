@@ -33,19 +33,19 @@ class LazyJsonArrayReaderEngine[T:ClassTag]() {
        * @return
        */
       @tailrec
-      def getPersons(hasNext: Boolean, agg: Stream[T]): Stream[T] ={
+      def streamBuilder(hasNext: Boolean, agg: Stream[T]): Stream[T] ={
         if(!hasNext) agg
         else{
           val newagg = cons(gson.fromJson(reader, implicitly[ClassTag[T]].runtimeClass), agg)
-          getPersons(reader.hasNext, newagg)
+          streamBuilder(reader.hasNext, newagg)
         }
       }
       
-      val persons = getPersons(reader.hasNext, Stream.empty[T]).reverse
+      val streamOfTObjects = streamBuilder(reader.hasNext, Stream.empty[T]).reverse
 
       // we close the inputstream
       reader.close()
-      persons
+      streamOfTObjects
     }
     catch {
       case ex: Throwable =>
