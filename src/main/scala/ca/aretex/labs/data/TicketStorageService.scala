@@ -1,4 +1,4 @@
-package com.orange.pocml4ticketsec.ml.core.storage
+package ca.aretex.labs.data.storage
 
 import java.io._
 import java.nio.charset.{StandardCharsets, Charset}
@@ -8,8 +8,8 @@ import java.sql.ResultSet
 import com.google.gson.{GsonBuilder, Gson}
 import com.google.gson.stream.JsonReader
 
-import com.orange.pocml4ticketsec.ml.core.utils.TicketDataUtil
-import com.orange.pocml4ticketsec.ml.model.classifier.TicketClassifier
+import ca.aretex.labs.data.TicketDataUtil
+import ca.aretex.labs.data.TicketClassifier
 
 import org.apache.commons.compress.archivers.tar.TarArchiveInputStream
 import org.apache.commons.compress.compressors.gzip.GzipCompressorInputStream
